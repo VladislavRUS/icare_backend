@@ -11,6 +11,7 @@ import init from "./init";
 import { User } from "./entity/User";
 import { Option } from "./entity/Option";
 import cors = require("cors");
+import { Answer } from "./entity/Answer";
 
 createConnection()
   .then(async connection => {
@@ -20,6 +21,7 @@ createConnection()
     const specializationRepository = connection.getRepository(Specialization);
     const questionRepository = connection.getRepository(Question);
     const optionRepository = connection.getRepository(Option);
+    const answersRepository = connection.getRepository(Answer);
 
     await init(connection);
 
@@ -185,6 +187,20 @@ createConnection()
       const { optionId } = req.params;
       await optionRepository.delete(optionId);
       return res.status(200).json("Deleted");
+    });
+
+    // Создание ответов
+    app.post("/api/v1/answers", async function(req: Request, res: Response) {
+      const results = await optionRepository.save(req.body);
+      return res.json(results);
+    });
+
+    // Создание ответов
+    app.get("/api/v1/answers", async function(req: Request, res: Response) {
+      const answers = await answersRepository.find({
+        relations: ["user", "appointment", "question"]
+      });
+      return res.json(answers);
     });
 
     app.listen(3000, () => {

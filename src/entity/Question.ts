@@ -8,6 +8,7 @@ import {
 } from "typeorm";
 import { Specialization } from "./Specialization";
 import { Option } from "./Option";
+import { Answer } from "./Answer";
 
 @Entity()
 export class Question {
@@ -35,4 +36,7 @@ export class Question {
 
   @Column({ nullable: true })
   maxAge: number;
+
+  @OneToMany(type => Answer, answer => answer.question)
+  answers: Answer[];
 }

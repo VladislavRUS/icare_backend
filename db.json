@@ -111,6 +111,15 @@
         },
         "dateTimestamp": "1561804364650"
     }],
+    "options": [{
+        "id": 1,
+        "order": 0,
+        "text": "Да"
+    }, {
+        "id": 2,
+        "order": 1,
+        "text": "Нет"
+    }],
     "questions": [{
             "id": 1,
             "type": "comment",
@@ -120,6 +129,53 @@
             "id": 2,
             "type": "rating",
             "text": "Оцените ваши впечатления от посещения"
+        },
+        {
+            "id": 3,
+            "type": "singleselect",
+            "text": "Понравилось ли Вам посещение?",
+            "options": [{
+                "id": 1
+            }, {
+                "id": 2
+            }]
+        }
+    ],
+    "answers": [{
+            "question": {
+                "id": 1
+            },
+            "user": {
+                "id": 1
+            },
+            "appointment": {
+                "id": 1
+            },
+            "value": "Просто супер"
+        },
+        {
+            "question": {
+                "id": 2
+            },
+            "user": {
+                "id": 1
+            },
+            "appointment": {
+                "id": 1
+            },
+            "value": "3"
+        },
+        {
+            "question": {
+                "id": 3
+            },
+            "user": {
+                "id": 1
+            },
+            "appointment": {
+                "id": 1
+            },
+            "value": "1"
         }
     ]
 }

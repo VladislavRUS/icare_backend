@@ -3,10 +3,12 @@ import {
   PrimaryGeneratedColumn,
   JoinColumn,
   Column,
-  ManyToOne
+  ManyToOne,
+  OneToMany
 } from "typeorm";
 import { Doctor } from "./Doctor";
 import { User } from "./User";
+import { Answer } from "./Answer";
 
 @Entity()
 export class Appointment {
@@ -29,4 +31,7 @@ export class Appointment {
 
   @Column({ default: false })
   isFinishedByDoctor: boolean;
+
+  @OneToMany(type => Answer, answer => answer.appointment)
+  answers: Answer[];
 }
