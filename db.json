@@ -1,0 +1,133 @@
+{
+    "users": [{
+        "id": 1,
+        "firstName": "Андрей",
+        "lastName": "Игнатьев",
+        "patronymic": "Алексеевич",
+        "age": 58,
+        "sex": "male"
+    }],
+    "specializations": [{
+        "id": 1,
+        "title": "Акушер-гинеколог"
+    }, {
+        "id": 2,
+        "title": "Гастроэнтеролог"
+    }, {
+        "id": 3,
+        "title": "Детский хирург"
+    }, {
+        "id": 4,
+        "title": "Невролог"
+    }],
+    "doctors": [{
+        "id": 1,
+        "specialization": {
+            "id": 1
+        },
+        "firstName": "Злата",
+        "lastName": "Богдан",
+        "patronymic": "Викторовна",
+        "age": 35,
+        "sex": "male"
+    }, {
+        "id": 2,
+        "specialization": {
+            "id": 1
+        },
+        "firstName": "Галина",
+        "lastName": "Ушакова",
+        "patronymic": "Васильевна",
+        "age": 29,
+        "sex": "female"
+    }, {
+        "id": 3,
+        "specialization": {
+            "id": 2
+        },
+        "firstName": "Марина",
+        "lastName": "Аристова",
+        "patronymic": "Анатольевна",
+        "age": 43,
+        "sex": "female"
+    }, {
+        "id": 4,
+        "specialization": {
+            "id": 2
+        },
+        "firstName": "Алена",
+        "lastName": "Тяжева",
+        "patronymic": "Александровна",
+        "age": 56,
+        "sex": "female"
+    }, {
+        "id": 5,
+        "specialization": {
+            "id": 3
+        },
+        "firstName": "Владимир",
+        "lastName": "Кислицкий",
+        "patronymic": "Иванович",
+        "age": 50,
+        "sex": "male"
+    }, {
+        "id": 6,
+        "specialization": {
+            "id": 3
+        },
+        "firstName": "Александр",
+        "lastName": "Мунин",
+        "patronymic": "Георгиевич",
+        "age": 44,
+        "sex": "male"
+    }, {
+        "id": 7,
+        "specialization": {
+            "id": 4
+        },
+        "firstName": "Наталья",
+        "lastName": "Балакина",
+        "patronymic": "Сергеевна",
+        "age": 39,
+        "sex": "female"
+    }, {
+        "id": 8,
+        "specialization": {
+            "id": 4
+        },
+        "firstName": "Наталья",
+        "lastName": "Бережная",
+        "patronymic": "Михайловна",
+        "age": 51,
+        "sex": "female"
+    }],
+    "appointments": [{
+        "id": 1,
+        "doctor": {
+            "id": 1
+        },
+        "user": {
+            "id": 1
+        },
+        "dateTimestamp": "1561804364650"
+    }],
+    "questions": [{
+            "id": 1,
+            "type": "singleselect",
+            "text": "Выберите подходящий вариант ответа",
+            "minAge": 10,
+            "maxAge": 60,
+            "specializations": [{
+                "id": 1
+            }]
+        },
+        {
+            "id": 2,
+            "type": "rating",
+            "text": "Оцените ваши впечатления от посещения",
+            "specializations": [{
+                "id": 2
+            }]
+        }
+    ]
+}
