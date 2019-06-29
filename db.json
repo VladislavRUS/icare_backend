@@ -113,21 +113,13 @@
     }],
     "questions": [{
             "id": 1,
-            "type": "singleselect",
-            "text": "Выберите подходящий вариант ответа",
-            "minAge": 10,
-            "maxAge": 60,
-            "specializations": [{
-                "id": 1
-            }]
+            "type": "comment",
+            "text": "Прокомментируйте ваше посещение"
         },
         {
             "id": 2,
             "type": "rating",
-            "text": "Оцените ваши впечатления от посещения",
-            "specializations": [{
-                "id": 2
-            }]
+            "text": "Оцените ваши впечатления от посещения"
         }
     ]
 }

@@ -140,7 +140,8 @@ createConnection()
     // Создание вопроса
     app.post("/api/v1/questions", async function(req: Request, res: Response) {
       const results = await questionRepository.save(req.body);
-      return res.json(results);
+      const question = await questionRepository.findOne(results.id);
+      return res.json(question);
     });
 
     // Удаление вопроса
