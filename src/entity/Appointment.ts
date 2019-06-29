@@ -27,6 +27,9 @@ export class Appointment {
   dateTimestamp: string;
 
   @Column({ default: false })
+  isPollFinishedByUser: boolean;
+
+  @Column({ default: false })
   isConfirmedByUser: boolean;
 
   @Column({ default: false })

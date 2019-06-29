@@ -102,15 +102,27 @@
         "sex": "female"
     }],
     "appointments": [{
-        "id": 1,
-        "doctor": {
-            "id": 1
+            "id": 1,
+            "doctor": {
+                "id": 1
+            },
+            "user": {
+                "id": 1
+            },
+            "dateTimestamp": "1561804364650"
         },
-        "user": {
-            "id": 1
-        },
-        "dateTimestamp": "1561804364650"
-    }],
+        {
+            "id": 2,
+            "doctor": {
+                "id": 2
+            },
+            "user": {
+                "id": 1
+            },
+            "isFinishedByDoctor": true,
+            "dateTimestamp": "1561804364650"
+        }
+    ],
     "options": [{
         "id": 1,
         "order": 0,

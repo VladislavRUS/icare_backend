@@ -48,13 +48,22 @@ createConnection()
     // Получение всех врачей
     app.get("/api/v1/doctors", async function(req: Request, res: Response) {
       const { specializationId } = req.query;
-      const specialization = new Specialization();
-      specialization.id = specializationId;
+      let doctors;
 
-      const doctors = await doctorsRepository.find({
-        where: { specialization },
-        relations: ["specialization"]
-      });
+      if (specializationId) {
+        const specialization = new Specialization();
+        specialization.id = specializationId;
+
+        doctors = await doctorsRepository.find({
+          where: { specialization },
+          relations: ["specialization"]
+        });
+      } else {
+        doctors = await doctorsRepository.find({
+          relations: ["specialization"]
+        });
+      }
+
       return res.json(doctors);
     });
 
@@ -74,7 +83,7 @@ createConnection()
       return res.json(createdAppointment);
     });
 
-    // Подтверждение встреч
+    // Подтверждение встречи
     app.post("/api/v1/appointments/:appointmentId/confirm", async function(
       req: Request,
       res: Response
@@ -83,6 +92,19 @@ createConnection()
 
       const appointment = await appointmentRepository.findOne(appointmentId);
       appointment.isConfirmedByUser = true;
+      const results = await appointmentRepository.save(appointment);
+      return res.json(results);
+    });
+
+    // Завершение встречи
+    app.post("/api/v1/appointments/:appointmentId/finish", async function(
+      req: Request,
+      res: Response
+    ) {
+      const { appointmentId } = req.params;
+
+      const appointment = await appointmentRepository.findOne(appointmentId);
+      appointment.isFinishedByDoctor = true;
       const results = await appointmentRepository.save(appointment);
       return res.json(results);
     });
@@ -198,7 +220,13 @@ createConnection()
 
     // Создание ответов
     app.post("/api/v1/answers", async function(req: Request, res: Response) {
+      const { appointmentId } = req.query;
       const results = await answersRepository.save(req.body);
+
+      const appointment = await appointmentRepository.findOne(appointmentId);
+      appointment.isPollFinishedByUser = true;
+      await appointmentRepository.save(appointment);
+
       return res.json(results);
     });
 
