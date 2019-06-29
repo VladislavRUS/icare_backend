@@ -12,6 +12,7 @@ import { User } from "./entity/User";
 import { Option } from "./entity/Option";
 import cors = require("cors");
 import { Answer } from "./entity/Answer";
+import { print } from "util";
 
 createConnection()
   .then(async connection => {
@@ -64,7 +65,13 @@ createConnection()
     ) {
       const appointment = await appointmentRepository.create(req.body);
       const results = await appointmentRepository.save(appointment);
-      return res.json(results);
+
+      const createdAppointment = await appointmentRepository.findOne({
+        where: { id: results["id"] },
+        relations: ["doctor", "doctor.specialization", "user"]
+      });
+
+      return res.json(createdAppointment);
     });
 
     // Подтверждение встреч
@@ -191,11 +198,11 @@ createConnection()
 
     // Создание ответов
     app.post("/api/v1/answers", async function(req: Request, res: Response) {
-      const results = await optionRepository.save(req.body);
+      const results = await answersRepository.save(req.body);
       return res.json(results);
     });
 
-    // Создание ответов
+    // Получения ответов
     app.get("/api/v1/answers", async function(req: Request, res: Response) {
       const answers = await answersRepository.find({
         relations: ["user", "appointment", "question"]
