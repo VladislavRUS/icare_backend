@@ -242,7 +242,7 @@ createConnection()
       return res.json(answers);
     });
 
-    app.listen(6000, () => {
+    app.listen(3000, () => {
       console.log("Server is ready...");
     });
   })
