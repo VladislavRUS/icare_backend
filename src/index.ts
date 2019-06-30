@@ -116,16 +116,20 @@ createConnection()
     ) {
       const { userId } = req.query;
 
+      let appointments;
+
       if (!userId) {
-        return res.status(405).json("No userId query parameter");
+        appointments = await appointmentRepository.find({
+          relations: ["doctor", "doctor.specialization", "user"]
+        });
+      } else {
+        const user = await usersRepository.findOne(userId);
+
+        appointments = await appointmentRepository.find({
+          where: { user },
+          relations: ["doctor", "doctor.specialization", "user"]
+        });
       }
-
-      const user = await usersRepository.findOne(userId);
-
-      const appointments = await appointmentRepository.find({
-        where: { user },
-        relations: ["doctor", "doctor.specialization", "user"]
-      });
 
       return res.json(appointments);
     });
